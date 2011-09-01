@@ -1,0 +1,12 @@
+_ReSharper.*
+*.ReSharper.user
+*.resharper.user
+bin
+obj
+*.dotcover
+_bin*
+packages
+*.msi
+*.exe
+*.suo
+*.user
