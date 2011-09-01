@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>Windows Azure Service Management Cmdlets - Get Started</title>
+        <link href="styles/docstyle.css" type="text/css" rel="stylesheet" />
+		<link href="styles/style.css" type="text/css" rel="stylesheet" />
+		<script src="scripts/script.js" type="text/javascript" language="jscript"></script>
+  	</head>
+<body>
+	<div id="outerWrapper">
+		<div id="wrapper">  
+			<div id="header">
+				<!-- START NAVIGATION BAR -->
+				<ul id="navigationBar">
+		<li>
+			<a href="Overview.htm" title="Overview">
+				OVERVIEW
+			</a>
+		</li>
+		<li>
+		
+			<a href="#" title="Get Started" class="selected">
+				GET STARTED
+			</a>
+		</li>
+		<li>
+			<a href="Using the Cmdlets.htm" title="Using the Cmdlets">
+				USING THE CMDLETS
+			</a>
+		</li>
+</ul>
+
+				<!-- END NAVIGATION BAR -->
+			</div>
+			
+<!-- START SECURITY MESSAGE -->
+  <div id="securityMessage">
+    <img src="images/Exclamation.png" class="exclamation"/>
+    <!--[if gte IE 9]>
+      This page requires the execution of JavaScript for navigating the contents
+      and copy code snippets. If you are viewing this page in Internet Explorer
+      locally on your computer, please click <strong>Allow blocked content</strong> on the security 
+      message at the bottom of this window.
+      <br /><br />
+      <img src="images/SecurityMessageIE9.png" />
+    <![endif]-->
+    <!--[if lte IE 8]>
+      This page requires the execution of JavaScript for navigating the contents
+      and copy code snippets. If you are viewing this page in Internet Explorer
+      locally on your computer, please click the security message at the top of this window
+      and click Yes in the resulting dialog.
+      <br /><br />
+      <img src="images/SecurityMessage.png" />
+    <![endif]-->
+  </div>
+  <script type="text/javascript">
+    document.getElementById("securityMessage").style.visibility = "hidden";
+  </script>
+<!-- END SECURITY MESSAGE -->
+
+			<div class="content">
+				<h1>Windows Azure Service Management Cmdlets</h1>
+				
+				<!---->
+					<div class="docContent">
+				<!---->
+					
+    <div style="display:none; height:0; width:0;">
+      <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="..\docs\Readme.html\html\../local/copycode.gif" />
+      <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="..\docs\Readme.html\html\../local/copycodeHighlight.gif" />
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <p>The Windows Azure Service Management Tools are provided in source code form. Before you can use the tools they need to be compiled and installed.</p>
+        <br />
+        <a name="_Toc226544218" href="#">
+          <span />
+        </a>
+        <a name="_Toc290985912" href="#">
+          <span />
+        </a>
+        <p>
+          <b>Task 1 - Build and Install the Windows Azure Service Management Tools </b>
+        </p>
+        <p>To get started using the Azure Services Management, complete the following steps: </p>
+        <ol>
+          <li>Run the <b>StartHere.cmd</b> command script located in the directory where you extracted the Windows Azure Service Management Tools package.</li>
+          <li>The <b>StartHere.cmd</b> script will launch the Configuration Wizard. The Configuration Wizard is designed to check your machine to ensure that it is properly configured with all of the dependencies to build and use the Azure Services Platform Management Tools.<p><img src="..\docs\Readme.html\html\images\bb7a8bc1-26df-481e-b87a-fa5474579e0a.png" /></p><p><b>Figure 1</b> - <i>Configuration Wizard</i></p></li>
+          <br />
+          <li>The next step involves checking your machine for the required software and configuration. If you don’t have the require configuration or dependencies, then in most cases you will be provided with a link to download them.<p><img src="..\docs\Readme.html\html\images\f8c01177-e743-49a7-a192-cb2241fa0e75.png" /></p><p><b>Figure 2</b> - <i>Checking Dependencies</i></p></li>
+          <br />
+          <li>After the dependency check is complete, press the <b>Next</b> button to proceed in the Configuration Wizard.</li>
+          <li>The next step in the Configuration Wizard involves building and installing the Windows Azure Service Management Tools. The Configuration Wizard will execute the <b>installPSSnapIn.cmd</b> command script located in the <b>\setup\scripts\tasks</b> folder where you extracted the Windows Azure Service Management Tools.<div class="alert"><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" src="..\docs\Readme.html\html\../local/note.gif" />Note:</th></tr><tr><td>  The \setup\scripts\tasks folder for this tool includes scripts for building, installing, and uninstalling the Azure Services Management Powershell SnapIn. You can run these files in case you need to troubleshoot a problem with the automated Configuration Wizard.</td></tr></table><p /></div></li>
+          <br />
+          <p>
+            <img src="..\docs\Readme.html\html\images\0e5346e0-2ed3-4254-8835-ccce1286a4c2.png" />
+          </p>
+          <p>
+            <b>Figure 3</b> - <i>Build Task</i></p>
+          <br />
+          <li>Finally, after building and installing the Windows Azure Service Management Tools, the Configuration Wizard will be complete.<p><img src="..\docs\Readme.html\html\images\090d0b6a-4987-4b57-8a00-4578fd7a7024.png" /></p><p><b>Figure 4</b> - <i>Configuration Wizard Completed</i></p></li>
+          <br />
+        </ol>
+        <a name="_Toc290985913" href="#">
+          <span />
+        </a>
+        <p>
+          <b>Task 2 - Listing Installed Cmdlets</b>
+        </p>
+        <p>The Azure Management Tools is a set of Windows PowerShell cmdlets for performing all of the operations related with administration and management of Azure services and storage.</p>
+        <p>The set of PowerShell cmdlets provided with ECF can be retrieved using a Powershell script:</p>
+        <ol>
+          <li>Open PowerShell console from <b>Start | All Programs | Accessories | Windows PowerShell | Windows PowerShell</b>. The PowerShell console should open.<p><img src="..\docs\Readme.html\html\images\8648d5d0-cf47-4461-ad84-db7da99de9b7.png" /></p><p><b>Figure 5</b> - <i>PowerShell Console</i></p></li>
+          <br />
+          <li>Add the AzureManagement snapin typing the following command:<div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th>PowerShell</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onfocusin="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" onfocusout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" src="..\docs\Readme.html\html\../local/copycode.gif" /> Copy Code
+                  </span></th></tr><tr><td colspan="2"><pre>Add-PSSnapin AzureManagementToolsSnapIn</pre></td></tr></table></span></div></li>
+          <br />
+          <li>Retrieve all cmdlets typing the following command:<div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th>PowerShell</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onfocusin="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" onfocusout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" src="..\docs\Readme.html\html\../local/copycode.gif" /> Copy Code
+                  </span></th></tr><tr><td colspan="2"><pre>Get-Command -PSSnapin AzureManagementToolsSnapIn</pre></td></tr></table></span></div></li>
+          <br />
+          <p>
+            <img src="..\docs\Readme.html\html\images\a01b0c41-bfcb-4681-9e12-507818113397.png" />
+          </p>
+          <p>
+            <b>Figure 6</b> - <i>Listing the available cmdlets</i></p>
+          <br />
+        </ol>
+        <a name="_Toc290985914" href="#">
+          <span />
+        </a>
+        <p>
+          <b>Task 3 - Displaying CmdLets Help</b>
+        </p>
+        <p>When using individual cmdlets you will probably need to know detailed information about how to use each cmdlet.</p>
+        <p>To get help information about a particular cmdlet follow the next steps:</p>
+        <ol>
+          <li>Open PowerShell console from <b>Start | All Programs | Accessories | Windows PowerShell | Windows PowerShell</b>. The PowerShell console should open.<p><img src="..\docs\Readme.html\html\images\fdb402ad-6d4c-4c69-8662-df165e602a91.png" /></p><p><b>Figure 7</b> - <i>Opening the PowerShell console</i></p></li>
+          <br />
+          <li>Add the <b>AzureManagementTools </b>snapin typing the following command:<div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th>PowerShell</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onfocusin="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" onfocusout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" src="..\docs\Readme.html\html\../local/copycode.gif" /> Copy Code
+                  </span></th></tr><tr><td colspan="2"><pre>Add-PSSnapin AzureManagementToolsSnapIn</pre></td></tr></table></span></div></li>
+          <br />
+          <li>Retrieve help information using the <b>Get-Help</b> command. For example, to get help for the <b>New-Deployment</b> cmdlet you can type:<div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th>PowerShell</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onfocusin="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" onfocusout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" src="..\docs\Readme.html\html\../local/copycode.gif" /> Copy Code
+                  </span></th></tr><tr><td colspan="2"><pre>Get-Help New-Deployment</pre></td></tr></table></span></div></li>
+          <br />
+          <p>
+            <img src="..\docs\Readme.html\html\images\4ffde3e3-472a-47ca-ace1-ba11d94adf59.png" />
+          </p>
+          <p>
+            <b>Figure 8</b> - <i>Retrieving help information for the New-Deployment</i></p>
+          <br />
+        </ol>
+        <div class="alert">
+          <table width="100%" cellspacing="0" cellpadding="0">
+            <tr>
+              <th align="left">
+                <img class="note" src="..\docs\Readme.html\html\../local/note.gif" />Note:</th>
+            </tr>
+            <tr>
+              <td><b> </b>To get more detailed information about a particular cmdlet you can execute the <b>Get-Help</b> cmdlet with the <b>–Detailed</b> or the <b>–Full</b> option. This will give information about parameters, usage examples, etc.<br />For example:<b> </b><br /> Get-Help Move-Deployment –Detailed</td>
+            </tr>
+          </table>
+          <p />
+        </div>
+        <br />
+      </div>
+    </div>
+  
+											<br />
+						<a href="Using the Cmdlets.htm" title="Using the Cmdlets">
+							Using the Cmdlets ->
+						</a>
+									</div>
+				<div class="clear"></div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="microsoftLink">
+			<a href="http://www.microsoft.com/" title="Microsoft">
+				<img alt="Microsoft" src="images/ms-logo-footer.gif" /></a>
+			<span>&copy; 2011 Microsoft</span>
+		</div>
+		<div class="leftSideLinks">
+			<a href="mailto:azcfeed@microsoft.com">Contact Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="EULA.htm" target="_parent">Terms of Use</a><br />
+		</div>
+	</div>
+</body>
+</html>
+

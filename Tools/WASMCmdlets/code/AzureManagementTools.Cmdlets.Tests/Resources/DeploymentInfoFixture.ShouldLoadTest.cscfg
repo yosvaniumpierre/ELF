@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ServiceConfiguration serviceName="TestCloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration">
+  <Role name="TestWebRole">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="DiagnosticsConnectionString" value="DefaultEndpointsProtocol=https;AccountName=demosstorage;AccountKey=8z7i2IDTEwT+/TXRPGknjhSvSk7zH41jsDhT2cVdoAB9Ax+gxtFFMx+IqHjt8IMufwYJzYbrDh3NjwofQ/ht9g==" />
+      <Setting name="ProductName" value="AzureManagementTools" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

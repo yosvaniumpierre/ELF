@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<DependencyCheckerConfiguration>
+  <title>WASM Cmdlets</title>
+  <image>resources\AzureServicesPlatformTools.png</image>
+  <previews>
+    <preview name="Check dependencies for Windows Azure Service Management Tools"
+       description="Check dependencies for Windows Azure Service Management Tools" />
+    <preview name="Install Windows Azure Service Management Tools PowerShell SnapIn"
+         description="Install Windows Azure Service Management Tools PowerShell SnapIn" />
+  </previews>
+  <tasks>
+    <task description="Install WASM PowerShell SnapIn"
+          scriptName=".\scripts\tasks\installPSSnapIn.cmd" displayConsole="true"/>
+  </tasks>
+  <dependencies>
+    <os type="Vista" buildNumber="6000;6001">
+      <dependency
+                    value=".\Scripts\Dependencies\Check\CheckVistaSp2.ps1"
+                    enabled="true"
+                    optional="false"
+                    title="Vista SP2"
+                    explanation="Vista Service Pack 2 is required."
+                    scriptName=""
+                    downloadUrl="http://windows.microsoft.com/en-US/windows/downloads/service-packs" />
+    </os>
+    <os type="Vista;Server" buildNumber="6002;7600;7601">  
+      <dependency
+					value=".\scripts\dependencies\check\CheckNET35SP1.ps1"
+					enabled="true"
+					optional="false"
+					title="Microsoft .NET Framework 3.5 SP1"
+					explanation="Download and install the Microsoft .NET Framework 3.5 SP1"
+					scriptName=""
+				    downloadUrl="http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7"/>
+      <dependency
+                    value=".\Scripts\Dependencies\Check\CheckIIS7.ps1"
+                    enabled="true"
+                    optional="false"
+                    title="Microsoft IIS 7.0"
+                    explanation="Enable the Internet Information Services 7 feature."
+                    scriptName="Scripts\Dependencies\Setup\install-iis.bat" />
+      <dependency
+                    value=".\Scripts\Dependencies\Check\CheckIis7AspNet.ps1"
+                    enabled="true"
+                    optional="false"
+                    title="IIS7 ASP.NET"
+                    explanation="Enable the ASP.NET role."
+                    scriptName="Scripts\Dependencies\Setup\install-iis7aspnet.bat" />
+
+      <dependency
+                    value=".\scripts\dependencies\check\CheckAzureSDK.ps1"
+                    enabled="true"
+                    optional="false"
+                    title="Windows Azure Software Development Kit 1.4"
+                    explanation="Download and install the Windows Azure SDK 1.4"
+                    downloadUrl="http://go.microsoft.com/fwlink/?LinkId=128752"
+                    scriptName=""/>
+    </os>
+
+  </dependencies>
+</DependencyCheckerConfiguration>

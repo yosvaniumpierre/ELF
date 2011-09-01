@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>Windows Azure Service Management Cmdlets - Using the Cmdlets</title>
+        <link href="styles/docstyle.css" type="text/css" rel="stylesheet" />
+		<link href="styles/style.css" type="text/css" rel="stylesheet" />
+		<script src="scripts/script.js" type="text/javascript" language="jscript"></script>
+  	</head>
+<body>
+	<div id="outerWrapper">
+		<div id="wrapper">  
+			<div id="header">
+				<!-- START NAVIGATION BAR -->
+				<ul id="navigationBar">
+		<li>
+			<a href="Overview.htm" title="Overview">
+				OVERVIEW
+			</a>
+		</li>
+		<li>
+			<a href="Get Started.htm" title="Get Started">
+				GET STARTED
+			</a>
+		</li>
+		<li>
+		
+			<a href="#" title="Using the Cmdlets" class="selected">
+				USING THE CMDLETS
+			</a>
+		</li>
+</ul>
+
+				<!-- END NAVIGATION BAR -->
+			</div>
+			
+<!-- START SECURITY MESSAGE -->
+  <div id="securityMessage">
+    <img src="images/Exclamation.png" class="exclamation"/>
+    <!--[if gte IE 9]>
+      This page requires the execution of JavaScript for navigating the contents
+      and copy code snippets. If you are viewing this page in Internet Explorer
+      locally on your computer, please click <strong>Allow blocked content</strong> on the security 
+      message at the bottom of this window.
+      <br /><br />
+      <img src="images/SecurityMessageIE9.png" />
+    <![endif]-->
+    <!--[if lte IE 8]>
+      This page requires the execution of JavaScript for navigating the contents
+      and copy code snippets. If you are viewing this page in Internet Explorer
+      locally on your computer, please click the security message at the top of this window
+      and click Yes in the resulting dialog.
+      <br /><br />
+      <img src="images/SecurityMessage.png" />
+    <![endif]-->
+  </div>
+  <script type="text/javascript">
+    document.getElementById("securityMessage").style.visibility = "hidden";
+  </script>
+<!-- END SECURITY MESSAGE -->
+
+			<div class="content">
+				<h1>Windows Azure Service Management Cmdlets</h1>
+				
+				<!---->
+					<div class="docContent">
+				<!---->
+					
+    <div style="display:none; height:0; width:0;">
+      <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="..\docs\Readme.html\html\../local/copycode.gif" />
+      <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="..\docs\Readme.html\html\../local/copycodeHighlight.gif" />
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <p>The Windows Azure Service Management Tools PowerShell cmdlets can be used to run unattended scripts to configure and manage the Azure Services. The PowerShell cmdlets provided with this package include the following:</p>
+        <p><b>Windows Azure Hosted Services</b></p>
+        <table style="">
+          <tr valign="top">
+            <th>
+              <p>Name</p>
+            </th>
+            <th>
+              <p>Description</p>
+            </th>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-Deployment</p>
+            </td>
+            <td>
+              <p>View details of a specified deployment.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-HostedProperties</p>
+            </td>
+            <td>
+              <p>List the properties for the specified hosted account.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-HostedService</p>
+            </td>
+            <td>
+              <p>Retrieve a specified hosted account.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-HostedServices</p>
+            </td>
+            <td>
+              <p>Lists all hosted services underneath the subscription.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Move-Deployment</p>
+            </td>
+            <td>
+              <p>Swaps the deployments in production and stage.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>New-Deployment</p>
+            </td>
+            <td>
+              <p>Create a new deployment. Note that there shouldn't be a deployment of the same name or in the same slot when executing this command.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Remove-Deployment</p>
+            </td>
+            <td>
+              <p>Deletes the specified deployment. Note that the deployment should be in suspended state.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Set-Deployment</p>
+            </td>
+            <td>
+              <p>Initiates an in-place upgrade of the specified deployment.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Set-DeploymentConfiguration</p>
+            </td>
+            <td>
+              <p>Change the deployment's configuration.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Set-DeploymentStatus</p>
+            </td>
+            <td>
+              <p>Change deployment status to running or suspended.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Set-WalkUpgradeDomain</p>
+            </td>
+            <td>
+              <p>Walks the specified upgrade domain.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-OSVersions</p>
+            </td>
+            <td>
+              <p>Lists the versions of the guest operating system that are currently available in Windows Azure.</p>
+            </td>
+          </tr>
+        </table>
+        <br />
+        <p><b>Windows Azure Storage</b></p>
+        <table style="">
+          <tr valign="top">
+            <th>
+              <p>Name</p>
+            </th>
+            <th>
+              <p>Description</p>
+            </th>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-StorageKeys</p>
+            </td>
+            <td>
+              <p>Displays the primary and secondary keys for the account. Should have</p>
+              <p>the storage account resource specified.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-StorageProperties</p>
+            </td>
+            <td>
+              <p>List the properties for the specified storage account.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-StorageServices</p>
+            </td>
+            <td>
+              <p>Lists all storage services underneath the subscription.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>New-StorageKey</p>
+            </td>
+            <td>
+              <p>Regenerates storage keys with the key-type parameter specifying which key to regenerate. Should have the storage account resource specified.</p>
+            </td>
+          </tr>
+        </table>
+        <br />
+        <p><b>Windows Azure Affinity Groups</b></p>
+        <table style="">
+          <tr valign="top">
+            <th>
+              <p>Name</p>
+            </th>
+            <th>
+              <p>Description</p>
+            </th>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-AffinityGroup</p>
+            </td>
+            <td>
+              <p>List the properties for the specified affinity group.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-AffinityGroups</p>
+            </td>
+            <td>
+              <p>Lists all affinity groups in the subscription.</p>
+            </td>
+          </tr>
+        </table>
+        <br />
+        <p><b>Windows Azure Service Certificates</b></p>
+        <table style="">
+          <tr valign="top">
+            <th>
+              <p>Name</p>
+            </th>
+            <th>
+              <p>Description</p>
+            </th>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-Certificates</p>
+            </td>
+            <td>
+              <p>List the certificates for the specified hosted service.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-Certificate</p>
+            </td>
+            <td>
+              <p>Retrieve a specified service certificate.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Add-Certificate</p>
+            </td>
+            <td>
+              <p>Upload a service certificate.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Remove-Certificate</p>
+            </td>
+            <td>
+              <p>Deletes the specified service certificate.</p>
+            </td>
+          </tr>
+        </table>
+        <br />
+        <p><b>Windows Azure Diagnostics</b></p>
+        <table style="">
+          <tr valign="top">
+            <th>
+              <p>Name</p>
+            </th>
+            <th>
+              <p>Description</p>
+            </th>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-ActiveTransfers</p>
+            </td>
+            <td>
+              <p>Returns the set of active transfers, with associated transfer information.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-CommonConfigurationLogs</p>
+            </td>
+            <td>
+              <p>Gets the common configuration values for all logging buffers.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-DiagnosticAwareRoleInstances</p>
+            </td>
+            <td>
+              <p>Returns a list of IDs of active role instances that have a diagnostic monitor running.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-DiagnosticAwareRoles</p>
+            </td>
+            <td>
+              <p>Lists the set of roles which have successfully started at least one diagnostic monitor.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Get-DiagnosticConfiguration</p>
+            </td>
+            <td>
+              <p>Gets the buffer configuration for the specified buffer name.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Set-CommonConfigurationLogs</p>
+            </td>
+            <td>
+              <p>Sets the common configuration values for all logging buffers.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Set-FileBasedLog</p>
+            </td>
+            <td>
+              <p>Sets the buffer configuration for file-based logs.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Set-InfrastructureLog</p>
+            </td>
+            <td>
+              <p>Sets the buffer configuration for the logs generated by the underlying diagnostics infrastructure. The diagnostic infrastructure logs are useful for troubleshooting the diagnostics system itself.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Set-PerformanceCounter</p>
+            </td>
+            <td>
+              <p>Sets the buffer configuration for performance counter data.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Set-WindowsAzureLog</p>
+            </td>
+            <td>
+              <p>Sets the buffer configuration for basic Windows Azure logs.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Set-WindowsEventLog</p>
+            </td>
+            <td>
+              <p>Sets the buffer configuration for Windows event logs.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <p>Start-OnDemandTransfer</p>
+            </td>
+            <td>
+              <p>Starts an on-demand transfer of the specified data buffer.</p>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td>
+              <a name="_GoBack" href="#">
+                <span />
+              </a>
+              <p>Stop-ActiveTransfer</p>
+            </td>
+            <td>
+              <p>Stops active on-demand transfer of the specified transfer id.</p>
+            </td>
+          </tr>
+        </table>
+        <br />
+        <a name="_Toc290985916" href="#">
+          <span />
+        </a>
+        <p>
+          <b>Task 1 - Using the Windows Azure Hosted services cmdlets</b>
+        </p>
+        <p>In this task, you will see a few examples demonstrating how to use the PowerShell cmdlets for accessing and managing Azure Hosted services.</p>
+        <ol>
+          <li>The first step is to get hold of a valid X509 certificate with a key size of at least 2048 bits. One quick way is to use <b>makecert.exe</b> (which ships with the Windows SDK) and use a command like the below: <div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th>Command Line</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onfocusin="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" onfocusout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" src="..\docs\Readme.html\html\../local/copycode.gif" /> Copy Code
+                  </span></th></tr><tr><td colspan="2"><pre>makecert -r -pe -a sha1 -n "CN=Windows Azure Authentication Certificate" -ss My -len 2048 -sp "Microsoft Enhanced RSA and AES Cryptographic Provider" -sy 24 testcert.cer</pre></td></tr></table></span></div></li>
+          <br />
+          <div class="alert">
+            <table width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <th align="left">
+                  <img class="note" src="..\docs\Readme.html\html\../local/note.gif" />Note:</th>
+              </tr>
+              <tr>
+                <td> This command must be run under elevated privileges.</td>
+              </tr>
+            </table>
+            <p />
+          </div>
+          <br />
+          <li>Next, upload the <b>testcert.cer</b> file to the developer portal to let Windows Azure know that is should trust the certificiate for API operations on your project.</li>
+          <li>Start Powershell if it is not already running by selecting <b>Windows Powershell</b> from the start menu.</li>
+          <li>Within the Windows PowerShell command prompt, enter the following command to add the Azure Services Management cmdlets to the console’s scope, if you have not already done so:<div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th>PowerShell</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onfocusin="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" onfocusout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" src="..\docs\Readme.html\html\../local/copycode.gif" /> Copy Code
+                  </span></th></tr><tr><td colspan="2"><pre>Add-PSSnapin AzureManagementToolsSnapIn</pre></td></tr></table></span></div></li>
+          <br />
+          <li>Now, let’s see how to deploy a new package using the PowerShell cmdlet. The following command demonstrates how to create a new deploy named TestDeploy on staging. You can get the subscription ID and API certificate thumbprint from Windows Azure portal.<div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th>PowerShell</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onfocusin="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" onfocusout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" src="..\docs\Readme.html\html\../local/copycode.gif" /> Copy Code
+                  </span></th></tr><tr><td colspan="2"><pre>New-Deployment -subscriptionId %SubscriptionId% -certificate (get-item cert:\CurrentUser\MY\%thumbprintInUpperCase%) -serviceName %serviceName% -slot staging -package http://%storageServiceName%.blob.core.windows.net/%container%/testPackage.cspkg -configuration config\TestServiceConfiguration.cscfg -name TestDeploy -label TestLabelStaging -storageservicename %StorageServiceName%</pre></td></tr></table></span></div></li>
+          <br />
+          <div class="alert">
+            <table width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <th align="left">
+                  <img class="note" src="..\docs\Readme.html\html\../local/note.gif" />Note:</th>
+              </tr>
+              <tr>
+                <td>If the storage account name is the same as the hosted service name, the storageservicename parameter can be omitted.</td>
+              </tr>
+            </table>
+            <p />
+          </div>
+          <br />
+          <li>Run the following command to retrieve the deployment created in the previous step.<div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th>PowerShell</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onfocusin="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" onfocusout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" src="..\docs\Readme.html\html\../local/copycode.gif" /> Copy Code
+                  </span></th></tr><tr><td colspan="2"><pre>Get-HostedServices -subscriptionId %SubscriptionId% -certificate (get-item cert:\CurrentUser\MY\%thumbprintInUpperCase%) | where {$_.ServiceName -eq "%serviceName%"} | Get-Deployment staging</pre></td></tr></table></span></div></li>
+          <br />
+          <li>Finally, to delete a deploy you can use the Remove-Deployment cmdlet. The following example removes the deployment on staging. Deployment that we deployed in the previous steps:<div class="code"><span codeLanguage="other"><table width="100%" cellspacing="0" cellpadding="0"><tr><th>PowerShell</th><th><span class="copyCode" onclick="CopyCode(this)" onkeypress="CopyCode_CheckKey(this)" onmouseover="ChangeCopyCodeIcon(this)" onfocusin="ChangeCopyCodeIcon(this)" onmouseout="ChangeCopyCodeIcon(this)" onfocusout="ChangeCopyCodeIcon(this)" tabindex="0"><img class="copyCodeImage" name="ccImage" align="absmiddle" src="..\docs\Readme.html\html\../local/copycode.gif" /> Copy Code
+                  </span></th></tr><tr><td colspan="2"><pre>Get-HostedService "%serviceName%" -subscriptionId %SubscriptionId% -certificate (get-item cert:\CurrentUser\MY\%thumbprintInUpperCase%) | Get-Deployment staging | Remove-Deployment</pre></td></tr></table></span></div></li>
+          <br />
+        </ol>
+      </div>
+    </div>
+  
+									</div>
+				<div class="clear"></div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="microsoftLink">
+			<a href="http://www.microsoft.com/" title="Microsoft">
+				<img alt="Microsoft" src="images/ms-logo-footer.gif" /></a>
+			<span>&copy; 2011 Microsoft</span>
+		</div>
+		<div class="leftSideLinks">
+			<a href="mailto:azcfeed@microsoft.com">Contact Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="EULA.htm" target="_parent">Terms of Use</a><br />
+		</div>
+	</div>
+</body>
+</html>
+

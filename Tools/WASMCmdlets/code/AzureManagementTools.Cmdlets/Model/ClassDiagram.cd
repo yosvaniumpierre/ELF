@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Microsoft.Samples.AzureManagementTools.PowerShell.Model.HostedServiceContext">
+    <Position X="0.75" Y="1.75" Width="2" />
+    <Members>
+      <Field Name="innerService" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAEAAgAAAAAAIAAAAAAAAAAAAACAAAAAAgAAA=</HashCode>
+      <FileName>Model\HostedServiceContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.Samples.AzureManagementTools.PowerShell.Model.DeploymentInfoContext">
+    <Position X="3.5" Y="1.75" Width="2" />
+    <Members>
+      <Field Name="innerDeployment" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAQAAIAAAEAQAAAAAAAAQiAAAAAAAAgA=</HashCode>
+      <FileName>Model\DeploymentInfoContext.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="RoleInstanceList" />
+      <Property Name="RolesConfiguration" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Microsoft.Samples.AzureManagementTools.PowerShell.Model.RoleConfiguration">
+    <Position X="7" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAQAACAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Model\RoleConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.Samples.AzureManagementTools.PowerShell.Model.RoleInstance">
+    <Position X="7" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACIAAQAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Model\RoleInstance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.Samples.AzureManagementTools.PowerShell.ManagementOperationContext" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAEAAAAAAEAAAAAAAAAAAAAAAAAAAAAEAABAA=</HashCode>
+      <FileName>Model\ManagementOperationContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.Samples.AzureManagementTools.PowerShell.Model.CertificateContext">
+    <Position X="0.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAgAAAACAAAAAABAAA=</HashCode>
+      <FileName>Model\CertificateContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
