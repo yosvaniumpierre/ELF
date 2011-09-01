@@ -1,0 +1,37 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="Build-Conventions.xml" />
+	<Import Project="Deploy-AppTier.xml" />
+	<Import Project="Deploy-WebTier.xml" />
+    
+	<ItemGroup>
+		<Modules Include="Deploy-AppTier.xml"/>
+		<!--
+		<Modules Include="Deploy-WebTier.xml"/>
+		-->
+    </ItemGroup>
+
+	<Target Name="FileSystemPublish">
+		<MSBuild Projects="@(Modules)" Targets="PublishToFileSystem" 
+			Properties="SrcBasePath=$(SrcBasePath);BinPathRelease=$(BinPathRelease);BinaryExternalPath=$(BinaryExternalPath)"/>
+	</Target>
+	
+	<Target Name="AzureFileSystemPublish">
+		<MSBuild Projects="@(Modules)" Targets="AzureCorePublish" 
+			Properties="SrcBasePath=$(SrcBasePath);BaseToolsPath=..\..\..\..\Tools;BinaryDeployPath=$(BinaryDeployPath)"/>
+	</Target>
+	
+	<Target Name="DevUploadToBlogStorage">
+		<MSBuild Projects="@(Modules)" Targets="UploadToDevBlob" 
+			Properties="SrcBasePath=$(SrcBasePath);BinPathRelease=$(BinPathRelease);BinaryExternalPath=$(BinaryExternalPath);BaseToolsPath=.\Tools;BinaryDeployPath=$(BinaryDeployPath)"/>
+	</Target>
+	
+	<Target Name="AzureUploadToBlogStorage">
+		<MSBuild Projects="@(Modules)" Targets="UploadToCloudBlob" 
+			Properties="SrcBasePath=$(SrcBasePath);BinPathRelease=$(BinPathRelease);BinaryExternalPath=$(BinaryExternalPath);BaseToolsPath=.\Tools;BinaryDeployPath=$(BinaryDeployPath)"/>
+	</Target>
+	
+	<Target Name="AzureDeployToStaging">
+		<MSBuild Projects="@(Modules)" Targets="AzureComputeDeploy" 
+			Properties="PowerShellScripts=.\Build;BinaryDeployPath=$(BinaryDeployPath);Environment=Staging"/>
+	</Target>
+</Project>

@@ -1,0 +1,112 @@
+<Project ToolsVersion="4.0" DefaultTargets="PublishToFileSystem" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- ************************************************************** -->
+	<!-- ** This section will perform a publish to local file system ** -->
+	<!-- ** Note: most useful on the CI to do local deploy to IIS    ** -->
+	<!-- ************************************************************** -->
+	<PropertyGroup>
+		<AppSrc>$(SrcBasePath)\AppTier\AppKernel</AppSrc>
+		<AppKernelFileSystemPath>C:\inetpub\wwwroot\AppKernel</AppKernelFileSystemPath>
+	</PropertyGroup>
+    <ItemGroup>
+		<ProjectToDeploy Include="$(AppSrc)\AppKernel\Avanade.AppKernel.csproj">
+            <Properties>Platform=AnyCPU;Configuration=Release</Properties>
+			<AdditionalProperties>PublishDestination=$(AppKernelFileSystemPath)</AdditionalProperties>
+        </ProjectToDeploy>
+	</ItemGroup>
+	<ItemGroup>
+		<AppKernelBinArtifacts Include="$(BinaryExternalPath)\WebActivator\WebActivator.dll"/>
+		<AppKernelBinArtifacts Include="$(BinaryExternalPath)\RazorGenerator.Mvc\RazorGenerator.Mvc.dll"/>
+		
+		<AppKernelBinArtifacts Include="$(BinPathRelease)\Avanade.AppKernel.Default.Plugin.dll"/>
+		<AppKernelBinArtifacts Include="$(BinPathRelease)\Avanade.BootStrapper.Web.Default.Tasks.dll"/>
+		<AppKernelBinArtifacts Include="$(BinPathRelease)\Avanade.BootStrapper.Web.Container.Ext.dll"/>
+		<!--
+		<AppKernelBinArtifacts Include="$(BinPathRelease)\Avanade.Domain.dll"/>
+		<AppKernelBinArtifacts Include="$(BinPathRelease)\Avanade.Repository.Services.dll"/>
+		<AppKernelBinArtifacts Include="$(BinPathRelease)\Avanade.Repository.Services.Hibernate.Ext.dll"/>
+		
+		<AppKernelBinArtifacts Include="$(BinaryExternalPath)\NHibernate.Fluent\FluentNHibernate.dll"/>
+		<AppKernelBinArtifacts Include="$(BinaryExternalPath)\NHibernate.Fluent\NHibernate.dll"/>
+		<AppKernelBinArtifacts Include="$(BinaryExternalPath)\NHibernate.Fluent\NHibernate.ByteCode.Castle.dll"/>
+		<AppKernelBinArtifacts Include="$(BinaryExternalPath)\NHibernate.Fluent\Iesi.Collections.dll"/>
+		<AppKernelBinArtifacts Include="$(BinaryExternalPath)\NHibernate.Linq\NHibernate.Linq.dll"/>
+		-->
+    </ItemGroup>
+	<Target Name="PublishToFileSystem">
+		<RemoveDir Directories="$(AppKernelFileSystemPath)\bin" />
+		<MSBuild Projects="@(ProjectToDeploy)" Targets="PublishToFileSystem" />
+		<Copy SourceFiles="@(AppKernelBinArtifacts)" DestinationFolder="$(AppKernelFileSystemPath)\bin" />	
+	</Target>
+	
+	<!-- ************************************************************************************************ -->
+	<!-- ******************************** Azure-Specific Deployments ************************************ -->
+	<!-- ************************************************************************************************ -->
+	
+	<!-- ************************** Creating a local package for uploading ****************************** -->
+	<PropertyGroup>
+		<CloudExtensionsDir>$(BaseToolsPath)\MSBuild.Cloud.Service\1.0\Visual Studio 10.0\</CloudExtensionsDir>
+		<BuildConfig>Release</BuildConfig>
+		<AzureArtifactBin>$(BinaryDeployPath)\Azure\AppKernel</AzureArtifactBin>
+		<AppName>AzureAppKernel</AppName>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<AzureCodeBase Include="$(AppSrc)\$(AppName)\$(AppName).ccproj"/>
+		<AzureArtifacts Include="$(AppSrc)\$(AppName)\bin\$(BuildConfig)\Publish\*.*" />
+    </ItemGroup> 
+ 	<Target Name="AzureCorePublish">
+		<MSBuild Projects="@(AzureCodeBase)" Targets="CorePublish" 
+			Properties="Configuration=$(BuildConfig);CloudExtensionsDir=$(CloudExtensionsDir)"/>
+		<Copy SourceFiles="@(AzureArtifacts)" DestinationFolder="$(AzureArtifactBin)" />	
+	</Target>
+	
+	<!-- ***************** Copying add-ins/extensions/plugins to Local Development Blob Storage ********************* -->
+	<UsingTask AssemblyFile="$(BaseToolsPath)\Windows.Azure.Msbuild\Windows.Azure.Msbuild.dll" TaskName="DevUploadBlockBlob" />
+
+	<Target Name="UploadToDevBlob">
+		<PropertyGroup>
+			<ContainerName>assembly</ContainerName>
+		</PropertyGroup>
+		
+		<DevUploadBlockBlob ContainerName="$(ContainerName)"
+							SourceFiles="@(AppKernelBinArtifacts)" 
+							DestinationFiles="@(AppKernelBinArtifacts ->'%(RecursiveDir)%(FileName)%(Extension)')"
+							CleanContainer="true" />
+	</Target>
+	
+	<!-- ***************** Copying add-ins/extensions/plugins to Azure Blob Storage ********************* -->
+	<UsingTask AssemblyFile="$(BaseToolsPath)\Windows.Azure.Msbuild\Windows.Azure.Msbuild.dll" TaskName="CloudUploadBlockBlob" />
+
+	<Target Name="UploadToCloudBlob">
+		<PropertyGroup>
+			<Endpoint>http://appkernel.blob.core.windows.net</Endpoint>
+			<StorageAccountName>appkernel</StorageAccountName>
+			<StorageAccountKey>jJSRwPI687M54O/rtq8sFBp9VK/xM3ePScThpL87XFuYrXltwwn3aVuqOo102icrQSKaCuB45f3DIMUY8xXsAw==</StorageAccountKey>
+			<ContainerName>assembly</ContainerName>
+		</PropertyGroup>
+		
+		<CloudUploadBlockBlob Endpoint="$(Endpoint)" 
+							StorageAccountName="$(StorageAccountName)" 
+							StorageAccountKey="$(StorageAccountKey)"
+							ContainerName="$(ContainerName)"
+							SourceFiles="@(AppKernelBinArtifacts)" 
+							DestinationFiles="@(AppKernelBinArtifacts ->'%(RecursiveDir)%(FileName)%(Extension)')"
+							CleanContainer="true" />
+	</Target>
+	
+	<!-- ***************** Deploying to Azure Staging Compute Hosted Service ********************* -->
+	<PropertyGroup>		
+		<AzureSubscriptionID>c02ffb8f-9f15-430e-b4a2-cd0f413fe084</AzureSubscriptionID>
+		<AzureCertificateThumbprint>5FAA35B1FE5FDE2E311D49BBCEFAADDC3DDC3E25</AzureCertificateThumbprint>
+		<PackageLocation>$(AzureArtifactBin)</PackageLocation>
+		<PackageName>$(AppName).cspkg</PackageName>
+		<ServiceConfigName>ServiceConfiguration.cscfg</ServiceConfigName>
+		<AzureHostedServiceName>AppKernel</AzureHostedServiceName>
+		<AzureStorageAccountName>appkernel</AzureStorageAccountName>
+		<Label>AutoDeploy</Label>
+	</PropertyGroup>
+	<Target Name="AzureComputeDeploy">
+		<Exec WorkingDirectory="$(MSBuildProjectDirectory)"  
+			Command=" $(windir)\system32\WindowsPowerShell\v1.0\powershell.exe -f $(PowerShellScripts)\AzureComputeDeploy.ps1 $(AzureSubscriptionID) $(AzureCertificateThumbprint) $(PackageLocation) $(PackageName) $(ServiceConfigName) $(AzureHostedServiceName) $(AzureStorageAccountName) $(Label) $(Environment)" />
+	</Target>
+</Project>

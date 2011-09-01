@@ -1,0 +1,37 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<!-- ******************************* Start ********************************************* -->
+		<!-- These are project-wide conventions -->
+		<!-- Handle with extreme care and caution -->
+    	<BuildBasePath>.</BuildBasePath>
+		<SrcBasePath>$(BuildBasePath)\Src</SrcBasePath>
+		<SrcTestPath>$(BuildBasePath)\Test</SrcTestPath>   		
+    	<BinaryInternalPath>$(BuildBasePath)\Bin\Internal</BinaryInternalPath>
+		<BinaryExternalPath>$(BuildBasePath)\Bin\External</BinaryExternalPath>
+		<BinaryTestPath>$(BuildBasePath)\Bin\Tests</BinaryTestPath>
+		<BinaryDeployPath>$(BuildBasePath)\Bin\Deploy</BinaryDeployPath>
+    	<BuildArtifactPath>$(BuildBasePath)\Artifacts</BuildArtifactPath>
+		<ArtifactDeployPath>$(BuildBasePath)\Artifacts\Deploy</ArtifactDeployPath>
+		<ArtifactDeployZipPath>$(ArtifactDeployPath)\Zip</ArtifactDeployZipPath>
+		
+		<!-- End of Project-Wide conventions -->
+		<!-- ******************************** End ********************************************** -->
+		
+		<!-- ******************************* Start ********************************************* -->
+		<!-- These properties describe the Main CodeBase concerns -->
+		<!-- These settings assume that there is one codebase targeting one or more similar platforms -->
+		
+		<!-- Binary path properties -->
+		<BinPathDebug>$(BinaryInternalPath)\Debug</BinPathDebug>
+		<BinPathRelease>$(BinaryInternalPath)\Release</BinPathRelease>
+		<BinPathTestsUnit>$(BinaryTestPath)\Unit</BinPathTestsUnit>
+		<BinPathTestsIntegration>$(BinaryTestPath)\Integration</BinPathTestsIntegration>
+		<BinPathTestsFunctional>$(BinaryTestPath)\Functional</BinPathTestsFunctional>
+		
+		<!-- Source path properties -->
+		<CodeBasePath>$(SrcBasePath)\CodeBase</CodeBasePath>
+		
+		<!-- End of Main CodeBase conventions -->
+		<!-- ******************************** End ********************************************** -->
+	</PropertyGroup>
+</Project>

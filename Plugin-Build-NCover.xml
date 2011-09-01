@@ -1,0 +1,48 @@
+<Project ToolsVersion="4.0" DefaultTargets="Coverage;CoverageReport" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">	
+	<!-- this must be the top-most import statement since the properties may be used for configuration -->
+	<Import Project="Build-Conventions.xml" />
+	<Import Project="Tools-Conventions.xml" />
+	
+	<PropertyGroup>
+		<NCoverToolPath>C:\Program Files\NCover</NCoverToolPath>
+		<NCoverBuildTaskPath>$(NCoverToolPath)\Build Task Plugins\NCover.MSBuildTasks.dll</NCoverBuildTaskPath>
+		<ArtifactFolder>$(BuildArtifactPath)\NCover\</ArtifactFolder>
+	</PropertyGroup>
+
+	<UsingTask TaskName="NCover.MSBuildTasks.NCover" AssemblyFile="$(NCoverBuildTaskPath)" />
+	<UsingTask TaskName="NCover.MSBuildTasks.NCoverReporting" AssemblyFile="$(NCoverBuildTaskPath)" />
+
+    <ItemGroup>
+		<TestAssemblies Include="$(BinPathUnitTests)\*.Tests.dll"/>
+    </ItemGroup>
+
+	<Target Name="Init">
+		<RemoveDir Directories="$(ArtifactFolder)" />
+	</Target>
+	
+	<Target Name="Coverage" DependsOnTargets="Init">
+	  <NCover ToolPath="$(NCoverToolPath)"
+		ContinueOnError="true" 
+		IncludeAssemblies="Avanade.*"
+		ExcludeAssemblies="Avanade.*.Tests"
+		TestRunnerExe="$(NUnitPath)\nunit-console.exe"
+		TestRunnerArgs="/xml:$(BuildArtifactPath)\NUnit\NUnit-Results.xml @(TestAssemblies)"
+		CoverageFile="$(ArtifactFolder)\Coverage.xml"/>
+	</Target>
+
+	<PropertyGroup>
+	  <CoverageReports>
+		<Report>
+		  <ReportType>FullCoverageReport</ReportType>
+		  <Format>Html</Format>
+		  <OutputPath>$(ArtifactFolder)\</OutputPath>
+		</Report>
+	  </CoverageReports>
+	</PropertyGroup>
+	  
+	<Target Name="CoverageReport" DependsOnTargets="Coverage">
+	  <NCoverReporting ToolPath="$(NCoverToolPath)"
+		CoverageDataPaths="$(ArtifactFolder)\Coverage.xml"
+		OutputReport="$(CoverageReports)"/>
+	</Target>
+</Project>

@@ -1,0 +1,32 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<AppTier>$(SrcBasePath)\AppTier</AppTier>
+		<WebTier>$(SrcBasePath)\WebTier</WebTier>
+		<Common>$(SrcBasePath)\Common</Common>
+	</PropertyGroup>
+    <ItemGroup>
+		<!-- Note: the build order will be Common, AppTier, WebTier. -->
+		<ProjectCodeBase Include="$(Common)\Domain\Domain.sln"/>
+		<ProjectCodeBase Include="$(Common)\Repository\Repository.sln"/>
+		<ProjectCodeBase Include="$(Common)\Provider\Provider.sln"/>
+		<ProjectCodeBase Include="$(Common)\BootStrapper.Web\BootStrapper.Web.sln"/>
+		<ProjectCodeBase Include="$(Common)\Azure.Logging\Azure.Logging.sln"/>
+		<ProjectCodeBase Include="$(AppTier)\AppKernel\AppKernel.sln"/>
+		<ProjectCodeBase Include="$(WebTier)\WebKernel\WebKernel.sln"/>
+    </ItemGroup>
+
+	<!-- Cleaning and Building Debug and Release targets -->
+    <Target Name="_CleanCodeBaseDebug">
+		<RemoveDir Directories="$(BinPathDebug);$(BinaryTestPath);$(ArtifactDeployZipPath)" />
+    </Target>
+    <Target Name="_CleanCodeBaseRelease">
+        <RemoveDir Directories="$(BinPathRelease);$(BinaryTestPath);$(ArtifactDeployZipPath)" />
+    </Target>
+	<!-- Building Debug and Release targets -->
+    <Target Name="BuildCodeBaseDebug" DependsOnTargets="_CleanCodeBaseDebug">
+        <MSBuild Projects="@(ProjectCodeBase)" Targets="Rebuild" Properties="Configuration=Debug"/>
+    </Target>
+    <Target Name="BuildCodeBaseRelease" DependsOnTargets="_CleanCodeBaseRelease">
+        <MSBuild Projects="@(ProjectCodeBase)" Targets="Rebuild" Properties="Configuration=Release"/>
+    </Target>
+</Project>

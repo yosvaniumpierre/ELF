@@ -1,0 +1,236 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">	
+	<!-- this must be the top-most import statement since the properties may be used for configuration -->
+	<Import Project="Build-Conventions.xml" />
+	<Import Project="Tools-Conventions.xml" />
+
+	<!-- configure the MSBuildCommunityTasks package -->
+	<PropertyGroup>
+		<!-- This property needs to be set in order to permit the MSBuildCommunityTasks to locate its own DLL -->
+		<MSBuildCommunityTasksPath>.</MSBuildCommunityTasksPath>
+		
+		<!-- other properties-->
+		<MajorVersion>0</MajorVersion>
+		<MinorVersion>1</MinorVersion>
+		<RevisionVersion>0</RevisionVersion>
+		<BuildVersion>1</BuildVersion>
+		<VersionInfo>$(MajorVersion).$(MinorVersion).$(RevisionVersion).$(BuildVersion)</VersionInfo>
+	</PropertyGroup>
+	<Import Project="$(MSBuildCommunityTasksBasePath)\MSBuild.Community.Tasks.Targets" />
+	
+	<!-- configure the MSBuild Extension Pack -->
+	<!-- 
+		Needed to modify the MSBuildExtension StyleCop setup
+		(1) Replace hardcoded path $(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\MSBuild.ExtensionPack.StyleCop.dll to point to the relative folder of Microsoft.StyleCop.4.4.0.14
+		(2) Copy the MSBuild.ExtensionPack.StyleCop.dll to the Microsoft.StyleCop.4.4.0.14 folder
+	-->
+    <Import Project="$(MSBuildExtensionPackPath)\MSBuild.ExtensionPack.tasks"/>
+	
+	<Import Project="$(StyleCopPath)\Microsoft.StyleCop.targets" />
+	
+	<Import Project="Build-CodeBase.xml" />
+	<Import Project="Build-TestBase.xml" />
+	
+	<!-- ******************************************************************************** -->
+	<!-- ****************** Clean up the built binaries in Bin\Internal ***************** -->
+	<!-- ******************************************************************************** -->
+    <Target Name="RemoveDebugBinaries">
+        <RemoveDir Directories="$(BinaryInternalPath)\Debug" />
+    </Target>
+    <Target Name="RemoveReleaseBinaries">
+        <RemoveDir Directories="$(BinaryInternalPath)\Release" />
+    </Target>
+    <Target Name="RemoveBinaries">
+        <RemoveDir Directories="$(BinaryDeployPath);$(BinaryTestPath)" />
+    </Target>
+	
+	<!-- ******************************************************************************** -->
+	<!-- *********************** Updates the version prior to build ********************* -->
+	<!-- ******************************************************************************** -->
+    <!-- Create list of all AssemblyInfo.cs -->
+	<ItemGroup>
+		<AssemblyInfos Include="$(SrcBasePath)\**\Properties\AssemblyInfo.cs" />
+	</ItemGroup>
+    <Target Name="UpdateBuildVersion">
+        <Message Text="Set the correct $(VersionInfo)" /> 
+		<FileUpdate Files="@(AssemblyInfos)" Regex='Version\("\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"\)' 
+		  ReplacementText='Version("$(VersionInfo)")' />
+    </Target>
+	
+	<!-- ******************************************************************************** -->
+	<!-- ***************************** Builds the source code *************************** -->
+	<!-- ******************************************************************************** -->
+	<Target Name="BuildDebug" DependsOnTargets="RemoveDebugBinaries;RemoveBinaries;UpdateBuildVersion;BuildCodeBaseDebug"/>
+	<Target Name="BuildRelease" DependsOnTargets="RemoveReleaseBinaries;RemoveBinaries;UpdateBuildVersion;BuildCodeBaseRelease"/>
+	
+	<Target Name="BuildTest" DependsOnTargets="BuildTests"/>
+		
+	<!-- ******************************************************************************** -->
+	<!-- ************************** Execute the Unit Tests ****************************** -->
+	<!-- ******************************************************************************** -->
+	<ItemGroup>
+		<UnitTestAssembly Include="$(BinPathTestsUnit)\*.Tests.dll" />
+	</ItemGroup>
+	<Target Name="ExecuteUnitTests">
+		<Message Text="*** Unit tests beginning..." />
+		<NUnit
+				Assemblies="@(UnitTestAssembly)"
+				ContinueOnError="true"
+				OutputXmlFile="$(NUnitArtifactPath)\Unit\$(NUnitArtifactFileName).$(NUnitArtifactFileExtension)"
+				ToolPath="$(NUnitPath)"
+		/>
+	</Target>
+	
+	<!-- ******************************************************************************** -->
+	<!-- ********************** Execute the Integration Tests *************************** -->
+	<!-- ******************************************************************************** -->
+	<ItemGroup>
+		<IntegrationTestAssembly Include="$(BinPathTestsIntegration)\*.Tests.dll" />
+	</ItemGroup>
+	<Target Name="ExecuteIntegrationTests">
+		<Message Text="*** Integration tests beginning..." />
+		<NUnit
+				Assemblies="@(IntegrationTestAssembly)"
+				ContinueOnError="true"
+				OutputXmlFile="$(NUnitArtifactPath)\Integration\$(NUnitArtifactFileName).$(NUnitArtifactFileExtension)"
+				ToolPath="$(NUnitPath)"
+		/>
+	</Target>
+	
+	<!-- ******************************************************************************** -->
+	<!-- *************************** FxCop Assembly Analysis **************************** -->
+	<!-- ******************************************************************************** -->
+    <Target Name="ExecuteFxCop">
+		<Message Text="Using FxCop to analyze the assemblies..." />
+		<ItemGroup>
+			<FxCopBinPathDebug Include="$(BinPathDebug)\Avanade.WebApp.*.dll" />
+			<FxCopRuleAssemblies Include="*.dll" />
+		</ItemGroup>
+		
+	    <!-- Call the task using a collection of files and all default rules -->
+        <MSBuild.ExtensionPack.CodeQuality.FxCop 
+			FxCopPath="$(FxCopPath)\FxCopCmd.exe"
+			TaskAction="Analyse" 
+			Files="@(FxCopBinPathDebug)" 
+			Rules="@(FxCopRuleAssemblies)"
+			DependencyDirectories="$(BinPathDebug)"
+			Verbose="True"
+			SearchGac="True"
+			ShowSummary="True"
+			OutputFile="$(FxCopArtifactPath)\FxCopReport.xml">
+        </MSBuild.ExtensionPack.CodeQuality.FxCop>
+
+		<!-- Create the HTML report -->
+		<XslTransformation
+			OutputPaths="$(FxCopArtifactPath)\FxCopReport.html"
+			XmlInputPaths="$(FxCopArtifactPath)\FxCopReport.xml"
+			XslInputPath="$(FxCopPath)\Xml\FxCopReport.xsl"
+			/>
+			
+		<!-- 
+			Use of the MSBuild Community Tasks FxCop was extremely problematic.
+			It was unable to search the GAC to discover all the dependencies.
+			The failure to do so meant that the analysis will not commence and thus
+		<FxCop
+				ToolPath="$(FxCopPath)"
+				TargetAssemblies="@(FxCopBinPathDebug)"
+				RuleLibraries="@(FxCopRuleAssemblies)"
+				AnalysisReportFileName="$(FxCopArtifactPath)\FxCopReport.html"
+				DependencyDirectories="$(BinPathDebug)"
+				Rules="Microsoft.Design#CA1012;-Microsoft.Performance#CA1805"
+				FailOnError="False"
+				IncludeSummaryReport="True"
+				ApplyOutXsl="True"
+				OutputXslFileName="$(FxCopPath)\Xml\FxCopReport.xsl"
+            />
+		-->
+    </Target>
+	
+	<!-- ******************************************************************************** -->
+	<!-- ************************* StyleCop Source Analysis ***************************** -->
+	<!-- ******************************************************************************** -->
+    <Target Name="ExecuteStyleCop">
+        <!-- Create a collection of files to scan -->
+		<ItemGroup>
+			<StyleCopExcludedFiles Include="$(SrcBasePath)\**\JbDecompilerCache\**\*.cs" />
+			<StyleCopExcludedFiles Include="$(SrcBasePath)\**\AssemblyInfo.cs" />
+		</ItemGroup>
+		<ItemGroup>
+			<StyleCopFiles Include="$(SrcBasePath)\**\*.cs" Exclude="@(StyleCopExcludedFiles)" />
+		</ItemGroup>
+        <!-- Run the StyleCop MSBuild task -->
+        <MSBuild.ExtensionPack.CodeQuality.StyleCop TaskAction="Scan" SourceFiles="@(StyleCopFiles)" ShowOutput="true" 
+			ForceFullAnalysis="true" CacheResults="false" 
+			logFile="$(StyleCopArtifactPath)\StyleCopLog.txt" 
+			SettingsFile="$(StyleCopPath)\Settings.StyleCop">
+            <Output TaskParameter="Succeeded" PropertyName="AllPassed"/>
+            <Output TaskParameter="ViolationCount" PropertyName="Violations"/>
+            <Output TaskParameter="FailedFiles" ItemName="Failures"/>
+        </MSBuild.ExtensionPack.CodeQuality.StyleCop>
+        <Message Text="Succeeded: $(AllPassed), Violations: $(Violations)"/>
+
+		<!-- Create the HTML report -->
+		<XslTransformation
+			OutputPaths="$(StyleCopArtifactPath)\StyleCopReport.html"
+			XmlInputPaths="StyleCopViolations.xml"
+			XslInputPath="$(StyleCopPath)\StyleCopReport.xsl"
+			/>
+		
+		<!-- Copy over the HTML Report image artifacts -->
+		<ItemGroup>
+			<ReportImageFiles Include="$(StyleCopPath)\images\*.png" />
+		</ItemGroup>
+		<Copy
+            SourceFiles="@(ReportImageFiles)"
+            DestinationFolder="$(StyleCopArtifactPath)\images"
+        />
+
+        <!-- FailedFile format is:
+        <ItemGroup>
+            <FailedFile Include="filename">
+                <CheckId>SA Rule Number</CheckId>
+                <RuleDescription>Rule Description</RuleDescription>
+                <RuleName>Rule Name</RuleName>
+                <LineNumber>Line the violation appears on</LineNumber>
+                <Message>SA violation message</Message>
+            </FailedFile>
+        </ItemGroup>-->
+        <Message Text="%(Failures.Identity) - Failed on Line %(Failures.LineNumber). %(Failures.CheckId): %(Failures.Message)"/>
+		
+		<!-- <Delete Files="StyleCopViolations.xml" /> -->
+    </Target>
+	
+	<!-- ******************************************************************* -->
+	<!-- **************** Perform Code Duplication Analysis **************** -->
+	<!-- ******************************************************************* -->
+	<Target Name="FindDuplicateCode" >
+		<RemoveDir Directories="$(SimianArtifactPath)" />
+		<MakeDir Directories="$(SimianArtifactPath)" />
+		<Message Text="Using Simian to perform code duplication analysis..." />
+        <Exec Command="$(SimianPathExe) -failOnDuplication- -formatter=xml:../../../$(SimianArtifactPath)/$(SimianAnalysis) ../../../$(SrcBasePath)/**/*.cs" 
+				WorkingDirectory="$(SimianPath)"/>
+	</Target>	
+	
+	<!-- ******************************************************************************** -->
+	<!-- ********************** Format codes using code beautifier ********************** -->
+	<!-- ******************************************************************************** -->
+	<Target Name="FormatCodeNArrangeStyle" >
+		<Message Text="Using NArrange to beautify the C# codebase..." />
+        <Exec Command="$(NArrangePathExe) $(NArrangePathConfig)" WorkingDirectory="$(NArrangePath)"/>
+	</Target>
+	
+	<!-- ******************************************************************************** -->
+	<!-- **************** Generate HTML / RTF Documentation from Sources **************** -->
+	<!-- ******************************************************************************** -->
+	<Target Name="GenerateHtmlDoc" >
+		<RemoveDir Directories="$(DoxygenHtmlArtifactFolder}" />
+		<Message Text="Using Doxygen to generate the HTML documentation..." />
+        <Exec Command="$(DoxygenPathExe) $(DoxygenHtmlConfig)" WorkingDirectory="$(DoxygenPath)"/>
+	</Target>
+	<!--
+	<Target Name="GenerateRtfDoc" >
+		<RemoveDir Directories="$(DoxygenRtfArtifactFolder}" />
+		<Message Text="Using Doxygen to generate the RTF documentation..." />
+        <Exec Command="$(DoxygenPathExe) $(DoxygenRtfConfig)" WorkingDirectory="$(DoxygenPath)"/>
+	</Target>
+	-->
+</Project>

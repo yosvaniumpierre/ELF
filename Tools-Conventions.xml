@@ -1,0 +1,50 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+    	<BaseToolsPath>Tools</BaseToolsPath>
+		
+		<StyleCopPath>$(BaseToolsPath)\Microsoft.StyleCop.4.4.0.14</StyleCopPath>
+		<StyleCopArtifactPath>$(BuildArtifactPath)\StyleCop</StyleCopArtifactPath>
+		
+		<!-- 
+			Be very careful with the naming convention for the MSBuildCommunityTasks since the 
+			MSBuildCommunityTasksPath property is used internally to that library 
+		-->
+		<MSBuildCommunityTasksBasePath>$(BaseToolsPath)\MSBuildCommunityTasks.1.2.0.306</MSBuildCommunityTasksBasePath>
+		
+		<!-- 
+			Note that MSBuildExtensionPackBasePath will be used in the MSBuild.ExtensionPack.tasks for the StyleCop customisation.
+		-->
+		<MSBuildExtensionPackToolName>MSBuild.Extension.Pack.4.0.3.0</MSBuildExtensionPackToolName>
+		<MSBuildExtensionPackPath>$(BaseToolsPath)\$(MSBuildExtensionPackToolName)</MSBuildExtensionPackPath>
+		<!-- This is required override since this property is used in the MSBuild.ExtensionPack.tasks -->
+		<ExtensionTasksPath>..\$(MSBuildExtensionPackToolName)\</ExtensionTasksPath>
+		
+		<NUnitPath>$(BaseToolsPath)\NUnit-2.5.10.11092\bin\net-2.0</NUnitPath>
+		<NUnitArtifactPath>$(BuildArtifactPath)\NUnit</NUnitArtifactPath>
+		<NUnitArtifactFileName>NUnit-Results</NUnitArtifactFileName>
+		<NUnitArtifactFileExtension>xml</NUnitArtifactFileExtension>
+		
+		<FxCopPath>$(BaseToolsPath)\Microsoft.Fxcop.10.0</FxCopPath>
+		<FxCopRulesPath>$(FxCopPath)\Rules</FxCopRulesPath>
+		<FxCopArtifactPath>$(BuildArtifactPath)\FxCop</FxCopArtifactPath>
+		
+		<SimianPath>$(BaseToolsPath)\Simian-2.3.32\bin</SimianPath>
+		<SimianPathExe>simian-2.3.32.exe</SimianPathExe>
+		<SimianConfig>simian.config</SimianConfig>
+		<SimianAnalysis>simian-analysis.xml</SimianAnalysis>
+		<SimianArtifactPath>$(BuildArtifactPath)\Simian</SimianArtifactPath>
+		
+		<NArrangePath>$(BaseToolsPath)\NArrange-0.2.9\bin</NArrangePath>
+		<NArrangePathExe>narrange-console.exe</NArrangePathExe>
+		<!-- Path is always relative to the location of the executable -->
+		<NArrangePathConfig>..\..\..\$(SrcBasePath)</NArrangePathConfig>
+		
+		<!-- Note that the values in the config files will always be relative to the executable -->
+		<DoxygenPath>$(BaseToolsPath)\doxygen-1.7.4</DoxygenPath>
+		<DoxygenPathExe>doxygen</DoxygenPathExe>
+		<DoxygenHtmlConfig>..\..\Build\config-html.doxygen</DoxygenHtmlConfig>
+		<DoxygenRtfConfig>..\..\Build\config-rtf.doxygen</DoxygenRtfConfig>
+		<DoxygenRtfArtifactFolder>$(BuildArtifactPath}\Doxygen\RTF</DoxygenRtfArtifactFolder>
+		<DoxygenHtmlArtifactFolder>$(BuildArtifactPath}\Doxygen\HTML</DoxygenHtmlArtifactFolder>
+	</PropertyGroup>
+</Project>

@@ -1,0 +1,29 @@
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+				
+	<PropertyGroup>
+		<TestsBinPath>$(TestsBinaryPath)/TestEngine</TestsBinPath>
+		<TestSrcPathFunctional>$(TestSrcPath)/Functional</TestSrcPathFunctional>
+		<TestSrcPathEngine>$(TestSrcPath)/TestEngine</TestSrcPathEngine>
+		<TestSrcPathIntegration>$(TestSrcPath)/Integration</TestSrcPathIntegration>
+	</PropertyGroup>
+    <ItemGroup>
+		<ProjectTest Include="$(TestSrcPathEngine)/CrimsonLogic.Common.TestEngine/CrimsonLogic.Common.TestEngine.sln"/>
+		<ProjectTest Include="$(TestSrcPathIntegration)/CrimsonLogic.Legal.IntegrationTest/IntegrationTester.sln"/>
+		<ProjectTest Include="$(TestSrcPathFunctional)/CrimsonLogic.Common.FunctionalTester/CrimsonLogic.Common.FunctionalTester.sln"/>
+		<ProjectTest Include="$(TestSrcPathFunctional)/Crimsonlogic.Legal.FunctionalTest.FrontEnd/Crimsonlogic.Legal.FunctionalTest.FrontEnd.sln"/>
+		<ProjectTest Include="$(TestSrcPathFunctional)/Crimsonlogic.Legal.FunctionalTest.BackEnd/Crimsonlogic.Legal.FunctionalTest.BackEnd.sln"/>
+		
+		<ProjectTest Include="$(TestSrcPathFunctional)/Crimsonlogic.Legal.FunctionalTest.FrontEnd/CrimsonLogic.Legal.FunctionalTest.FrontEnd.msbuild"/>
+		<ProjectTest Include="$(TestSrcPathFunctional)/Crimsonlogic.Legal.FunctionalTest.BackEnd/Crimsonlogic.Legal.FunctionalTest.BackEnd.msbuild"/>
+		
+    </ItemGroup>
+	
+	<!-- Quick Build Section -->
+	<!-- Cleaning and Building Debug and Release targets -->
+    <Target Name="CleanTestsBinPath">
+        <RemoveDir Directories="$(TestsBinPath)" />
+    </Target>
+    <Target Name="BuildTests" DependsOnTargets="CleanTestsBinPath">
+        <MSBuild Projects="@(ProjectTest)" Properties="Configuration=Debug"/>
+    </Target>
+</Project>
