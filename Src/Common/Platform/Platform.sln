@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Services", "Platform.Services\Platform.Services.csproj", "{0EC7056D-2BB0-4CFB-A2E1-CCE29EE02137}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Services.Web", "Platform.Services.Web\Platform.Services.Web.csproj", "{B44379DC-AF0E-43E7-88A1-F456AB6B1209}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Services.Azure", "Platform.Services.Azure\Platform.Services.Azure.csproj", "{6001F498-440C-433A-B615-04B051F61E46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0EC7056D-2BB0-4CFB-A2E1-CCE29EE02137}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC7056D-2BB0-4CFB-A2E1-CCE29EE02137}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EC7056D-2BB0-4CFB-A2E1-CCE29EE02137}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EC7056D-2BB0-4CFB-A2E1-CCE29EE02137}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B44379DC-AF0E-43E7-88A1-F456AB6B1209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B44379DC-AF0E-43E7-88A1-F456AB6B1209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B44379DC-AF0E-43E7-88A1-F456AB6B1209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B44379DC-AF0E-43E7-88A1-F456AB6B1209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6001F498-440C-433A-B615-04B051F61E46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6001F498-440C-433A-B615-04B051F61E46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6001F498-440C-433A-B615-04B051F61E46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6001F498-440C-433A-B615-04B051F61E46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

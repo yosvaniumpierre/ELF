@@ -1,0 +1,29 @@
+﻿@using Avanade.WebKernel.Models
+@using Telerik.Web.Mvc.UI
+@model IEnumerable<Component>
+
+@{
+    ViewBag.Title = "WebKernel";
+}
+
+<div class="t-header"><h2>Hello from WebKernel</h2></div>
+
+@(Html.Telerik().Grid(Model)
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.Service).Width(100);
+            columns.Bound(o => o.Implementation).Width(200);
+        })
+        .DataBinding(dataBinding => 
+        {
+            dataBinding.Server().Select("Index", "Home", new { ajax = true });
+            dataBinding.Ajax().Select("Index", "Home").Enabled(true);
+        })
+        .Scrollable(scrolling => scrolling.Enabled(true))
+        .Sortable(sorting => sorting.Enabled(true))
+        .Pageable(paging => paging.Enabled(true))
+        .Filterable(filtering => filtering.Enabled(true))
+        .Groupable(grouping => grouping.Enabled(true))
+        .Footer(true)
+)

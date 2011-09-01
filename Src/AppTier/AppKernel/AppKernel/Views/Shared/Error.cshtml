@@ -1,0 +1,56 @@
+﻿@model HandleErrorInfo
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error</title>
+</head>
+<body>
+    @{
+        var path = (string)ViewData["Path"];
+        if (!string.IsNullOrEmpty(path))
+        {
+            <h2>
+                Sorry, the path (@path) you selected does not exist.
+            </h2>
+        }
+        else
+        {
+            <h2>
+                Sorry, an error occurred while processing your request.
+            </h2>
+        }
+    }   
+
+
+
+@*    @if (@Model != null)
+    {
+        <h3>Resolution Instructions:</h3>
+        <p>@Model.ResolutionInstruction</p>
+        
+        <h3>Message</h3>
+        <p>@Model.Message</p>
+        
+        <h3>Stack-Trace</h3>
+        <p>@Model.InnerException.StackTrace</p>
+
+        <h3>Application Error Code</h3>
+        <p>@ExceptionFactory.RetrieveExceptionCodeId(@Model)</p>
+    }*@
+
+    @if (@Model != null)
+    {
+        <p>Controller = @Model.ControllerName</p>
+        <p>Action = @Model.ActionName</p>
+        <p>Message = @Model.Exception.Message</p>
+        <p>Data Count = @Model.Exception.Data.GetHashCode()</p>
+        <p>StackTrace :</p>
+        <pre>@Model.Exception.StackTrace</pre>
+    }
+
+</body>
+</html>

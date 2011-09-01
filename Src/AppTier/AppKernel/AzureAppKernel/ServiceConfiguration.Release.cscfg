@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sc:ServiceConfiguration
+ xmlns:sc="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <sc:Role>
+    <sc:ConfigurationSettings>
+      <sc:Setting xdt:Transform="Replace" xdt:Locator="Match(name)" name="AssemblyBlobConnectionString" value="UseDevelopmentStorage=true"/>
+      <sc:Setting xdt:Transform="Replace" xdt:Locator="Match(name)" name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true"/>
+      <!--<sc:Setting xdt:Transform="Replace" xdt:Locator="Match(name)" name="AssemblyBlobConnectionString" value="DefaultEndpointsProtocol=https;AccountName=appkernel;AccountKey=jJSRwPI687M54O/rtq8sFBp9VK/xM3ePScThpL87XFuYrXltwwn3aVuqOo102icrQSKaCuB45f3DIMUY8xXsAw=="/>-->
+      <!--<sc:Setting xdt:Transform="Replace" xdt:Locator="Match(name)" name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=appkernel;AccountKey=jJSRwPI687M54O/rtq8sFBp9VK/xM3ePScThpL87XFuYrXltwwn3aVuqOo102icrQSKaCuB45f3DIMUY8xXsAw=="/>-->
+    </sc:ConfigurationSettings>
+  </sc:Role>
+</sc:ServiceConfiguration>
