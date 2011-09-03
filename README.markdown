@@ -1,3 +1,9 @@
+Introduction
+================
+
+A framework with the intent of providing an abstraction over IIS 7.5 and Azure. In other words, components built for this framework can be deployed to either 
+environment with **zero** change to the code or configuration.  
+
 Environment
 ================
 

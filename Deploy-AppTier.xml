@@ -44,7 +44,7 @@
 	<!-- ************************** Creating a local package for uploading ****************************** -->
 	<PropertyGroup>
 		<CloudExtensionsDir>$(BaseToolsPath)\MSBuild.Cloud.Service\1.0\Visual Studio 10.0\</CloudExtensionsDir>
-		<AzureArtifactBin>$(BinaryDeployPath)\Azure\AppKernel</AzureArtifactBin>
+		<AzureArtifactBin>$(BinaryDeployPath)\Azure\AppKernel\$(BuildConfig)</AzureArtifactBin>
 		<AppName>AzureAppKernel</AppName>
 	</PropertyGroup>
 	
