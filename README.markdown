@@ -11,6 +11,17 @@ Environment
 2. ASP.NET MVC 3
 3. Visual Studio 2010
 4. Windows Azure SDK 1.4
+5. PowerShell
+
+Visual Studio Solution Configuration
+================
+
+There are 4 kinds of Configuration - 2 standard and 2 additional ones:
+
+1. Debug - targeted for IIS 7.5 and assemblies are built using the Debug configuration
+2. Release - targeted for IIS 7.5 and assemblies are built using the Debug configuration
+3. Emulator - targeted for the Azure Emulator and will use the Debug-configured assemblies
+4. Azure - targeted for the Azure Cloud and will use the Release-configured assemblies
 
 Continuous Integration
 ================
