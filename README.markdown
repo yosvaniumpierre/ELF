@@ -8,8 +8,9 @@ Environment
 ================
 
 1. .NET Framework 4
-2. Visual Studio 2010
-3. Windows Azure SDK 1.4
+2. ASP.NET MVC 3
+3. Visual Studio 2010
+4. Windows Azure SDK 1.4
 
 Continuous Integration
 ================
