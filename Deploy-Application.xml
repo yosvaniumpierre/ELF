@@ -10,14 +10,19 @@
 		-->
     </ItemGroup>
 
-	<Target Name="FileSystemPublish">
+	<Target Name="WebFileSystemPublish">
 		<MSBuild Projects="@(Modules)" Targets="PublishToFileSystem" 
 			Properties="SrcBasePath=$(SrcBasePath);BinPathRelease=$(BinPathRelease);BinaryExternalPath=$(BinaryExternalPath)"/>
 	</Target>
 	
+	<Target Name="EmulatorFileSystemPublish">
+		<MSBuild Projects="@(Modules)" Targets="AzureCorePublish" 
+			Properties="BuildConfig=Emulator;SrcBasePath=$(SrcBasePath);BaseToolsPath=..\..\..\..\Tools;BinaryDeployPath=$(BinaryDeployPath)"/>
+	</Target>
+	
 	<Target Name="AzureFileSystemPublish">
 		<MSBuild Projects="@(Modules)" Targets="AzureCorePublish" 
-			Properties="SrcBasePath=$(SrcBasePath);BaseToolsPath=..\..\..\..\Tools;BinaryDeployPath=$(BinaryDeployPath)"/>
+			Properties="BuildConfig=Azure;SrcBasePath=$(SrcBasePath);BaseToolsPath=..\..\..\..\Tools;BinaryDeployPath=$(BinaryDeployPath)"/>
 	</Target>
 	
 	<Target Name="DevUploadToBlogStorage">

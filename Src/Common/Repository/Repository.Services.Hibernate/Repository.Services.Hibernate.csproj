@@ -73,7 +73,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\ConfigItemMapping.cs" />
     <Compile Include="Core\INHibernatePersistenceManager.cs" />
     <Compile Include="Core\INHibernateUnitOfWork.cs" />
     <Compile Include="Core\NHibernatePersistenceManager.cs" />

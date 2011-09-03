@@ -9,7 +9,6 @@
 	</PropertyGroup>
     <ItemGroup>
 		<ProjectToDeploy Include="$(AppSrc)\AppKernel\Avanade.AppKernel.csproj">
-            <Properties>Platform=AnyCPU;Configuration=Release</Properties>
 			<AdditionalProperties>PublishDestination=$(AppKernelFileSystemPath)</AdditionalProperties>
         </ProjectToDeploy>
 	</ItemGroup>
@@ -34,7 +33,7 @@
     </ItemGroup>
 	<Target Name="PublishToFileSystem">
 		<RemoveDir Directories="$(AppKernelFileSystemPath)\bin" />
-		<MSBuild Projects="@(ProjectToDeploy)" Targets="PublishToFileSystem" />
+		<MSBuild Projects="@(ProjectToDeploy)" Targets="PublishToFileSystem" Properties="Platform=AnyCPU;Configuration=Release" />
 		<Copy SourceFiles="@(AppKernelBinArtifacts)" DestinationFolder="$(AppKernelFileSystemPath)\bin" />	
 	</Target>
 	
@@ -45,7 +44,6 @@
 	<!-- ************************** Creating a local package for uploading ****************************** -->
 	<PropertyGroup>
 		<CloudExtensionsDir>$(BaseToolsPath)\MSBuild.Cloud.Service\1.0\Visual Studio 10.0\</CloudExtensionsDir>
-		<BuildConfig>Release</BuildConfig>
 		<AzureArtifactBin>$(BinaryDeployPath)\Azure\AppKernel</AzureArtifactBin>
 		<AppName>AzureAppKernel</AppName>
 	</PropertyGroup>

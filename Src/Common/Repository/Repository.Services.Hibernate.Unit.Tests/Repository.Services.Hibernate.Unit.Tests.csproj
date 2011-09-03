@@ -34,10 +34,6 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Avanade.Domain, Version=0.1.0.1, Culture=neutral, PublicKeyToken=0f97947a3fcaf5cc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Bin\Internal\Debug\Avanade.Domain.dll</HintPath>
-    </Reference>
     <Reference Include="Avanade.Repository.Services">
       <HintPath>..\..\..\..\Bin\Internal\$(Configuration)\Avanade.Repository.Services.dll</HintPath>
     </Reference>

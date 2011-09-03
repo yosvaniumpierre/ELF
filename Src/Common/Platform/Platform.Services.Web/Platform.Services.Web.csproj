@@ -37,8 +37,16 @@
     <AssemblyOriginatorKeyFile>CodeBase.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonLibrary">
+      <HintPath>..\..\..\..\Bin\External\CommonLibrary\CommonLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\..\..\Bin\External\NLog\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +54,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\AbstractKeyConfigHandler.cs" />
+    <Compile Include="Configuration\AbstractSectionKeyConfigHandler.cs" />
+    <Compile Include="Configuration\DataSource\AppWebKeyConfigFile.cs" />
+    <Compile Include="Configuration\DataSource\EmbeddedIniConfig.cs" />
+    <Compile Include="Configuration\DataSource\EnvVariableKeyConfig.cs" />
+    <Compile Include="Configuration\DataSource\ExternalDefaultIniConfig.cs" />
+    <Compile Include="Configuration\DataSource\ExternalSectionKeyIniConfig.cs" />
+    <Compile Include="Configuration\DataSource\KeyValueExtensionHandler.cs" />
+    <Compile Include="Configuration\DefaultConfigurationImpl.cs" />
+    <Compile Include="Configuration\DefaultConfigurationImplMBean.cs" />
+    <Compile Include="Configuration\IKeyConfigHandler.cs" />
+    <Compile Include="Configuration\IKeyValueExtension.cs" />
+    <Compile Include="Configuration\ISectionKeyConfigHandler.cs" />
+    <Compile Include="Configuration\IConfigSettingCollection.cs" />
+    <Compile Include="Configuration\KeyRequestHandler.cs" />
+    <Compile Include="Configuration\SectionKeyRequestHandler.cs" />
+    <Compile Include="Configuration\Setting.cs" />
+    <Compile Include="Configuration\ConfigSettingCollection.cs" />
+    <Compile Include="Configuration\Utils\IniFileProcessor.cs" />
     <Compile Include="LocalFileStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,7 +84,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CodeBase.snk" />
+    <EmbeddedResource Include="Data\ParameterData.ini" />
+    <EmbeddedResource Include="Data\TestData.ini" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

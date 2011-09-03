@@ -47,8 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICache.cs" />
+    <Compile Include="IConfiguration.cs" />
     <Compile Include="IFileStore.cs" />
     <Compile Include="IServiceBus.cs" />
+    <Compile Include="IConfigSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,13 @@
     <AssemblyName>AppKernelMock</AssemblyName>
     <StartDevelopmentStorage>True</StartDevelopmentStorage>
     <Name>AzureAppKernel</Name>
+	<AzureEnvironment></AzureEnvironment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Emulator' ">
+    <AzureEnvironment>Emulator</AzureEnvironment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Azure' ">
+    <AzureEnvironment>Azure</AzureEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,10 +43,10 @@
     <None Include="ServiceConfiguration.Base.cscfg">
       <DependentUpon>ServiceConfiguration.cscfg</DependentUpon>
     </None>
-    <None Include="ServiceConfiguration.Debug.cscfg">
+    <None Include="ServiceConfiguration.Emulator.cscfg">
       <DependentUpon>ServiceConfiguration.cscfg</DependentUpon>
     </None>
-    <None Include="ServiceConfiguration.Release.cscfg">
+    <None Include="ServiceConfiguration.Azure.cscfg">
       <DependentUpon>ServiceConfiguration.cscfg</DependentUpon>
     </None>
   </ItemGroup>
@@ -64,7 +71,7 @@
   </PropertyGroup>
   <Import Project="$(CloudExtensionsDir)Microsoft.CloudService.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\Web\Microsoft.Web.Publishing.targets" />
-  <Target Name="BeforeBuild">
-    <TransformXml Source="ServiceConfiguration.Base.cscfg" Transform="ServiceConfiguration.$(Configuration).cscfg" Destination="ServiceConfiguration.cscfg" />
+  <Target Name="BeforeBuild" Condition=" '$(Configuration)' == 'Azure' Or '$(Configuration)' == 'Emulator' ">
+    <TransformXml Source="ServiceConfiguration.Base.cscfg" Transform="ServiceConfiguration.$(AzureEnvironment).cscfg" Destination="ServiceConfiguration.cscfg" />
   </Target>
 </Project>

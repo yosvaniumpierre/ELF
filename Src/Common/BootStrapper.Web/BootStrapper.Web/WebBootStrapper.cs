@@ -1,3 +1,6 @@
+using System.IO;
+using Castle.Windsor.Configuration.Interpreters;
+
 namespace Avanade.BootStrapper.Web
 {
     using System;
@@ -10,8 +13,6 @@ namespace Avanade.BootStrapper.Web
     using Castle.MicroKernel.Registration;
     using Castle.Windsor;
     using Castle.Windsor.Installer;
-
-    using Container;
 
     using NLog;
 
@@ -126,7 +127,11 @@ namespace Avanade.BootStrapper.Web
 
         protected virtual IWindsorContainer CreateContainer(Assembly callingAssembly)
         {
-            var container = new WindsorContainer();
+            Logger.Info("Creating the Windsor Container for use within standard ASP.NET hosted environment!");
+            var windsorConfigPath = Path.Combine(HttpRuntime.AppDomainAppPath, WindsorConfig);
+            var exists = File.Exists(windsorConfigPath);
+            Logger.Info("Status of CastleWindsor config file ({0}): {1}", WindsorConfig, exists);
+            var container = exists ? new WindsorContainer(new XmlInterpreter(windsorConfigPath)) : new WindsorContainer();
             container.Kernel.ComponentRegistered += KernelComponentRegistered;
 
             container.Register(AllTypes.FromAssemblyInDirectory(new AssemblyFilter(HttpRuntime.BinDirectory, BootStrapRuntime.TasksMask)).
@@ -138,8 +143,6 @@ namespace Avanade.BootStrapper.Web
                     FromAssembly.InDirectory(new AssemblyFilter(HttpRuntime.BinDirectory, BootStrapRuntime.ExtensionMask)),
                     FromAssembly.InDirectory(new AssemblyFilter(HttpRuntime.BinDirectory, BootStrapRuntime.PluginMask))
                     );
-
-            container.InstallXmlConfigFile(WindsorConfig);
 
             return container;
         }

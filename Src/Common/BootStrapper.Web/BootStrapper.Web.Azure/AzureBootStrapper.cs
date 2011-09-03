@@ -1,3 +1,7 @@
+using System.IO;
+using System.Web;
+using Castle.Windsor.Configuration.Interpreters;
+
 namespace Avanade.BootStrapper.Web.Azure
 {
     using System.Reflection;
@@ -6,8 +10,6 @@ namespace Avanade.BootStrapper.Web.Azure
     using Castle.MicroKernel;
     using Castle.Windsor;
     using Castle.Windsor.Installer;
-
-    using Container;
 
     using NLog;
 
@@ -29,7 +31,10 @@ namespace Avanade.BootStrapper.Web.Azure
         {
             Logger.Info("Creating the Windsor Container for use within Azure!");
 
-            var container = new WindsorContainer();
+            var windsorConfigPath = Path.Combine(HttpRuntime.AppDomainAppPath, WindsorConfig);
+            var exists = File.Exists(windsorConfigPath);
+            Logger.Info("Status of CastleWindsor config file ({0}): {1}", WindsorConfig, exists);
+            var container = exists ? new WindsorContainer(new XmlInterpreter(windsorConfigPath)) : new WindsorContainer();
             container.Kernel.ComponentRegistered += KernelComponentRegistered;
 
             var processingStrategy = new AssemblyItemStrategy(container);
@@ -46,8 +51,6 @@ namespace Avanade.BootStrapper.Web.Azure
             {
                 processingStrategy.Handle(assemblyItem);
             }
-
-            container.InstallXmlConfigFile(WindsorConfig);
 
             return container;
         }
