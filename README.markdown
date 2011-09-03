@@ -10,8 +10,10 @@ Environment
 1. .NET Framework 4
 2. ASP.NET MVC 3
 3. Visual Studio 2010
-4. Windows Azure SDK 1.4
-5. PowerShell
+4. Windows Azure SDK v1.4
+5. PowerShell v1.0
+
+Note: the codes were created on a Windows 7 64-bit machine
 
 Visual Studio Solution Configuration
 ================
