@@ -25,7 +25,7 @@
 			Properties="BuildConfig=Azure;SrcBasePath=$(SrcBasePath);BaseToolsPath=..\..\..\..\Tools;BinaryDeployPath=$(BinaryDeployPath)"/>
 	</Target>
 	
-	<Target Name="DevUploadToBlogStorage">
+	<Target Name="EmulatorUploadToBlogStorage">
 		<MSBuild Projects="@(Modules)" Targets="UploadToDevBlob" 
 			Properties="SrcBasePath=$(SrcBasePath);BinPathRelease=$(BinPathRelease);BinaryExternalPath=$(BinaryExternalPath);BaseToolsPath=.\Tools;BinaryDeployPath=$(BinaryDeployPath)"/>
 	</Target>
