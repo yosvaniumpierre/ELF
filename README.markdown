@@ -1,3 +1,13 @@
+Environment
+================
+
+1. .NET Framework 4
+2. Visual Studio 2010
+3. Windows Azure SDK 1.4
+
+Continuous Integration
+================
+
 To compile the codebase:
 
 * Debug configuration - execute *DEV-Build-CodeBase-Debug.bat*
@@ -17,5 +27,5 @@ Location of deployment packages:
 To deploy the application:
 
 * IIS 7.5 (*C:\inetpub\wwwroot\AppKernel*) - execute *msbuild /t:WebFileSystemPublish Deploy-Application.xml*
-* Azure Emulator - execute *msbuild /t:EmulatorUploadToBlogStorage Deploy-Application.xml* (note: no MSBuild target exists to run the package in the Azure Emulator)
-* Azure Cloud - execute *msbuild /t:AzureUploadToBlogStorage Deploy-Application.xml* and then *msbuild /t:AzureDeployToStaging Deploy-Application.xml*
+* Azure Emulator - execute *msbuild /t:EmulatorUploadToBlogStorage Deploy-Application.xml* (**note:** no MSBuild target exists to run the package in the Azure Emulator)
+* Azure Cloud - execute *msbuild /t:AzureUploadToBlogStorage Deploy-Application.xml* **and followed by** *msbuild /t:AzureDeployToStaging Deploy-Application.xml*
