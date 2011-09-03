@@ -1,5 +1,0 @@
-This is a framework for creating Line-Of-Business applications.
-
-To compile the codebase:
-1) Debug configuration - execute DEV-Build-CodeBase-Debug.bat
-2) Release configuration - execute DEV-Build-CodeBase-Release.bat
