@@ -3,10 +3,8 @@
   <Role name="Avanade.AppKernel">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="AssemblyBlobConnectionString"
-        value="DefaultEndpointsProtocol=https;AccountName=appkernel;AccountKey=jJSRwPI687M54O/rtq8sFBp9VK/xM3ePScThpL87XFuYrXltwwn3aVuqOo102icrQSKaCuB45f3DIMUY8xXsAw=="/>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString"
-        value="DefaultEndpointsProtocol=https;AccountName=appkernel;AccountKey=jJSRwPI687M54O/rtq8sFBp9VK/xM3ePScThpL87XFuYrXltwwn3aVuqOo102icrQSKaCuB45f3DIMUY8xXsAw=="/>
+      <Setting name="AssemblyBlobConnectionString" value="UseDevelopmentStorage=true"/>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true"/>
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>

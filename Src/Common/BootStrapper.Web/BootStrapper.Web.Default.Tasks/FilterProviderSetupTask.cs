@@ -1,13 +1,11 @@
-namespace Avanade.BootStrapper.Web.Default.Tasks.Mvc
+using System.Linq;
+using System.Web.Mvc;
+using Avanade.BootStrapper.Web.Container;
+using Avanade.BootStrapper.Web.Task;
+using Castle.Windsor;
+
+namespace Avanade.BootStrapper.Web.Default.Tasks
 {
-    using System.Linq;
-    using System.Web.Mvc;
-
-    using Avanade.BootStrapper.Web.Container;
-    using Avanade.BootStrapper.Web.Task;
-
-    using Castle.Windsor;
-
     [TaskPriority(1)]
     public class FilterProviderSetupTask : BaseTask
     {

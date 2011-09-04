@@ -1,12 +1,10 @@
-namespace Avanade.BootStrapper.Web.Default.Tasks.Mvc
+using System.Web.Mvc;
+using System.Web.Routing;
+using Avanade.BootStrapper.Web.Task;
+using Castle.Windsor;
+
+namespace Avanade.BootStrapper.Web.Default.Tasks
 {
-    using System.Web.Mvc;
-    using System.Web.Routing;
-
-    using Castle.Windsor;
-
-    using Task;
-
     [TaskPriority(9)]
     public class RegisterRoutesTask : BaseTask
     {

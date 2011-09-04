@@ -1,15 +1,11 @@
-namespace Avanade.BootStrapper.Web.Default.Tasks.Mvc
+using System.Web.Mvc;
+using Avanade.BootStrapper.Web.Container;
+using Avanade.BootStrapper.Web.Task;
+using Castle.Windsor;
+using NLog;
+
+namespace Avanade.BootStrapper.Web.Default.Tasks
 {
-    using System.Web.Mvc;
-
-    using Castle.Windsor;
-
-    using Container;
-
-    using NLog;
-
-    using Task;
-
     [TaskPriority(1)]
     public class ControllerFactoryTask : BaseTask
     {

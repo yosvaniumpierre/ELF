@@ -1,11 +1,9 @@
-namespace Avanade.BootStrapper.Web.Default.Tasks.Mvc
+using System.Web.Mvc;
+using Avanade.BootStrapper.Web.Task;
+using Castle.Windsor;
+
+namespace Avanade.BootStrapper.Web.Default.Tasks
 {
-    using System.Web.Mvc;
-
-    using Avanade.BootStrapper.Web.Task;
-
-    using Castle.Windsor;
-
     [TaskPriority(5)]
     public class RegisterGlobalFiltersTask : BaseTask
     {

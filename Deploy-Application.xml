@@ -37,6 +37,6 @@
 	
 	<Target Name="AzureDeployToStaging">
 		<MSBuild Projects="@(Modules)" Targets="AzureComputeDeploy" 
-			Properties="PowerShellScripts=.\Build;BinaryDeployPath=$(BinaryDeployPath);Environment=Staging"/>
+			Properties="BuildConfig=Azure;PowerShellScripts=.\Build;BinaryDeployPath=$(BinaryDeployPath);Environment=Staging"/>
 	</Target>
 </Project>

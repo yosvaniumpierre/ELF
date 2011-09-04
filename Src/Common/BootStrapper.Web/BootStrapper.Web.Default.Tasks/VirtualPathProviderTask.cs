@@ -1,9 +1,8 @@
-namespace Avanade.BootStrapper.Web.Default.Tasks.Mvc
+using Avanade.BootStrapper.Web.Task;
+using Castle.Windsor;
+
+namespace Avanade.BootStrapper.Web.Default.Tasks
 {
-    using Castle.Windsor;
-
-    using Task;
-
     [TaskPriority(1)]
     public class VirtualPathProviderTask : BaseTask
     {

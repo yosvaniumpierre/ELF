@@ -13,9 +13,6 @@
         </ProjectToDeploy>
 	</ItemGroup>
 	<ItemGroup>
-		<AppKernelBinArtifacts Include="$(BinaryExternalPath)\WebActivator\WebActivator.dll"/>
-		<AppKernelBinArtifacts Include="$(BinaryExternalPath)\RazorGenerator.Mvc\RazorGenerator.Mvc.dll"/>
-		
 		<AppKernelBinArtifacts Include="$(BinPathRelease)\Avanade.AppKernel.Default.Plugin.dll"/>
 		<AppKernelBinArtifacts Include="$(BinPathRelease)\Avanade.BootStrapper.Web.Default.Tasks.dll"/>
 		<AppKernelBinArtifacts Include="$(BinPathRelease)\Avanade.BootStrapper.Web.Container.Ext.dll"/>

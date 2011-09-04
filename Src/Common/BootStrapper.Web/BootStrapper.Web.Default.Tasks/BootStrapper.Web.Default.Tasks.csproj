@@ -61,13 +61,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mvc\AreaRegistrationTask.cs" />
-    <Compile Include="Mvc\ControllerFactoryTask.cs" />
-    <Compile Include="Mvc\FilterProviderSetupTask.cs" />
-    <Compile Include="Mvc\RegisterGlobalFiltersTask.cs" />
-    <Compile Include="Mvc\RegisterRoutesTask.cs" />
-    <Compile Include="Mvc\VirtualPathProviderTask.cs" />
+    <Compile Include="AreaRegistrationTask.cs" />
+    <Compile Include="ControllerFactoryTask.cs" />
+    <Compile Include="FilterProviderSetupTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterGlobalFiltersTask.cs" />
+    <Compile Include="RegisterRoutesTask.cs" />
+    <Compile Include="VirtualPathProviderTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CodeBase.snk" />

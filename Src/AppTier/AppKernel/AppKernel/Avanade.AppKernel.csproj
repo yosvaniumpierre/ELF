@@ -14,8 +14,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
-	<NLogEnvironment>Web</NLogEnvironment>
-	<CastleEnvironment>Web</CastleEnvironment>
+    <NLogEnvironment>Web</NLogEnvironment>
+    <CastleEnvironment>Web</CastleEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Emulator' ">
     <Configuration>Debug</Configuration>
@@ -25,11 +25,11 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Emulator' ">
     <NLogEnvironment>Emulator</NLogEnvironment>
-	<CastleEnvironment>Azure</CastleEnvironment>
+    <CastleEnvironment>Azure</CastleEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Azure' ">
     <NLogEnvironment>Azure</NLogEnvironment>
-	<CastleEnvironment>Azure</CastleEnvironment>
+    <CastleEnvironment>Azure</CastleEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -179,12 +179,14 @@
     </None>
     <None Include="NLog.Azure.config">
       <DependentUpon>NLog.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="NLog.Web.config">
       <DependentUpon>NLog.config</DependentUpon>
     </None>
     <None Include="NLog.Emulator.config">
       <DependentUpon>NLog.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
@@ -207,7 +209,7 @@
   </Target>
   <Target Name="BeforeBuild">
     <TransformXml Source="NLog.Base.config" Transform="NLog.$(NLogEnvironment).config" Destination="NLog.config" />
-	<TransformXml Source="CastleWindsor.Base.config" Transform="CastleWindsor.$(CastleEnvironment).config" Destination="CastleWindsor.config" />
+    <TransformXml Source="CastleWindsor.Base.config" Transform="CastleWindsor.$(CastleEnvironment).config" Destination="CastleWindsor.config" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
